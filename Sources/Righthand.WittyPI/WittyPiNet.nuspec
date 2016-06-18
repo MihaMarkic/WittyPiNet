@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+      <id>WittyPiNet</id>
+      <version>$version$</version>
+      <authors>Righthand</authors>
+      <owners>Righthand</owners>
+      <title>>WittyPiNet</title>
+      <description>.net/Mono library to manage WittyPi board.</description>
+      <summary>.net/Mono library to manage WittyPi board.</summary>
+      <licenseUrl>https://github.com/MihaMarkic/WittyPiNet/blob/master/LICENSE</licenseUrl>
+      <projectUrl>https://github.com/MihaMarkic/WittyPiNet</projectUrl>
+      <releaseNotes>https://github.com/MihaMarkic/WittyPiNet/blob/master/ReleaseNotes.md</releaseNotes>
+      
+      <requireLicenseAcceptance>false</requireLicenseAcceptance>
+      <copyright>Copyright (c) Righthand 2016</copyright>
+      <tags>Raspberry WittyPi Mono .net</tags>
+
+      <dependencies>
+         <dependency id="Raspberry.IO.GeneralPurpose" version="2.4" />
+		 <dependency id="Raspberry.System" version="2.1" />
+      </dependencies>
+   </metadata>
+
+   <files>
+		<file src="Righthand.WittyPI\bin\Release\Righthand.WittyPI.dll" target="lib\net45\Righthand.WittyPI.dll" />
+        <file src="Righthand.WittyPI\bin\Release\Righthand.WittyPI.XML" target="lib\net45\Righthand.WittyPI.XML" />
+   </files>
+</package>
