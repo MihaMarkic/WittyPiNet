@@ -4,10 +4,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{367DFC09-B63F-44E8-91A2-3EFB75C81FB4}"
+	ProjectSection(SolutionItems) = preProject
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raspberry.IO.InterIntegratedCircuit", "Raspberry.IO.InterIntegratedCircuit\Raspberry.IO.InterIntegratedCircuit.csproj", "{63B8403E-BC56-43F9-A045-F61ECC3871F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Righthand.WittyPI", "Righthand.WittyPI\Righthand.WittyPI.csproj", "{2D1AE71F-6029-44E2-BFC1-D4F16DA29624}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Righthand.WittyPi", "Righthand.WittyPi\Righthand.WittyPi.csproj", "{2D1AE71F-6029-44E2-BFC1-D4F16DA29624}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

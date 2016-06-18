@@ -7,8 +7,8 @@
     <ProjectGuid>{2D1AE71F-6029-44E2-BFC1-D4F16DA29624}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Righthand.WittyPI</RootNamespace>
-    <AssemblyName>Righthand.WittyPI</AssemblyName>
+    <RootNamespace>Righthand.WittyPi</RootNamespace>
+    <AssemblyName>Righthand.WittyPi</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -28,6 +28,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Righthand.WittyPi.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Raspberry.IO, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">

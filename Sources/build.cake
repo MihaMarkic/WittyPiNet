@@ -1,13 +1,13 @@
 ﻿#addin "Cake.FileHelpers"
 
-var Project = Directory("./Righthand.WittyPI/");
-var TestProject = Directory("./Righthand.WittyPI.Tests/");
-var CakeDockerProj = Project + File("Righthand.WittyPI.csproj");
-var CakeTestDockerProj = TestProject + File("Righthand.WittyPI.Test.csproj");
-var CakeTestDockerAssembly = TestProject + Directory("bin/Release") + File("Righthand.WittyPI.Tests.dll");
+var Project = Directory("./Righthand.WittyPi/");
+var TestProject = Directory("./Righthand.WittyPi.Tests/");
+var WittyPiProj = Project + File("Righthand.WittyPi.csproj");
+var WittyPiTestProj = TestProject + File("Righthand.WittyPi.Test.csproj");
+var WittyPiTestAssembly = TestProject + Directory("bin/Release") + File("Righthand.WittyPi.Tests.dll");
 var AssemblyInfo = Project + File("Properties/AssemblyInfo.cs");
-var CakeDockerSln = File("./Righthand.WittyPI.sln");
-var CakeDockerNuspec = File("./Righthand.WittyPI.nuspec");
+var WittyPiSln = File("./Righthand.WittyPi.sln");
+var WittyPiNuspec = File("./WittyPiNet.nuspec");
 var Nupkg = Directory("./nupkg");
 
 var target = Argument("target", "Default");
@@ -16,8 +16,8 @@ var version = "";
 Task("Default")
 	.Does (() =>
 	{
-		NuGetRestore (CakeDockerSln);
-		DotNetBuild (CakeDockerSln, c => {
+		NuGetRestore (WittyPiSln);
+		DotNetBuild (WittyPiSln, c => {
 			c.Configuration = "Release";
 			c.Verbosity = Verbosity.Minimal;
 		});
@@ -29,7 +29,7 @@ Task("NuGetPack")
 	.Does (() =>
 {
 	CreateDirectory(Nupkg);
-	NuGetPack (CakeDockerNuspec, new NuGetPackSettings { 
+	NuGetPack (WittyPiNuspec, new NuGetPackSettings { 
 		Version = version,
 		Verbosity = NuGetVerbosity.Detailed,
 		OutputDirectory = Nupkg,

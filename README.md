@@ -1,6 +1,10 @@
 # WittyPiNet
-.net/Mono library for [WittyPi](http://www.uugear.com/witty-pi-realtime-clock-power-management-for-raspberry-pi/) board.
+.net/Mono library for [Witty Pi](http://www.uugear.com/witty-pi-realtime-clock-power-management-for-raspberry-pi/) board.
 Currently it supports setting wake up time and sleep time.
+See also Witty Pi's [manual](http://www.uugear.com/doc/WittyPi_UserManual.pdf).
+
+[![NuGet](https://img.shields.io/nuget/v/WittyPiNet.svg)](https://www.nuget.org/packages/WittyPiNet)
+
 ## Important
 
 Make sure that WittyPI's RTC clock is synchronized with Raspberry's system clock.
@@ -16,3 +20,5 @@ wittyPi.WakeUp = WakeUpDateTime.Hourly(15, 00);
 var time = DateTime.Now.AddMinutes(2);
 wittyPi.Sleep = new SleepDateTime(time.Day, time.Hour, time.Minutes);
 ```
+
+[![Follow @mihamarkic](https://img.shields.io/badge/Twitter-Follow%20%40mihamarkic-blue.svg)](https://twitter.com/intent/follow?screen_name=mihamarkic)
