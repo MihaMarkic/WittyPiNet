@@ -67,7 +67,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Raspberry.IO.InterIntegratedCircuit\Raspberry.IO.InterIntegratedCircuit.csproj">
+    <ProjectReference Include="..\Raspberry.IO.InterIntegratedCircuit\Raspberry.IO.InterIntegratedCircuit.csproj">
       <Project>{63B8403E-BC56-43F9-A045-F61ECC3871F3}</Project>
       <Name>Raspberry.IO.InterIntegratedCircuit</Name>
     </ProjectReference>
