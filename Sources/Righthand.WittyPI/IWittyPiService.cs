@@ -1,4 +1,6 @@
-﻿namespace Righthand.WittyPi
+﻿using System;
+
+namespace Righthand.WittyPi
 {
     /// <summary>
     /// An interface representing the Witty Pi board.
@@ -13,5 +15,6 @@
         /// Gets or sets sleep date.
         /// </summary>
         SleepDateTime Sleep { get; set; }
+        DateTime RtcDateTime { get; }
     }
 }

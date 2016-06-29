@@ -1,4 +1,6 @@
-﻿using Raspberry.IO.GeneralPurpose;
+﻿using System;
+using System.Diagnostics;
+using Raspberry.IO.GeneralPurpose;
 using Raspberry.IO.InterIntegratedCircuit;
 
 namespace Righthand.WittyPi
@@ -8,9 +10,40 @@ namespace Righthand.WittyPi
     /// </summary>
     public class WittyPiService : IWittyPiService
     {
-        private const byte SsdI2cAddress = 0x68;
-        private const ConnectorPin SdaPin = ConnectorPin.P1Pin03;
-        private const ConnectorPin SclPin = ConnectorPin.P1Pin05;
+        private readonly DateTime ZeroDate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+        /// <summary>
+        /// Hour format
+        /// </summary>
+        public const byte HOUR_12 = 0x01 << 6;
+        /// <summary>
+        /// DS1337 Address
+        /// </summary>
+        public const byte SsdI2cAddress = 0x68;
+        /// <summary>
+        /// SDA pin
+        /// </summary>
+        public readonly ConnectorPin SdaPin;
+        /// <summary>
+        /// SCL pin
+        /// </summary>
+        public readonly ConnectorPin SclPin;
+
+        /// <summary>
+        /// Initializes an instace with default Raspberry I2C pins (P1Pin03, P1Pin05)
+        /// </summary>
+        public WittyPiService(): this(ConnectorPin.P1Pin03, ConnectorPin.P1Pin05)
+        {}
+
+        /// <summary>
+        /// Initializes an instance given I2C pins. 
+        /// </summary>
+        /// <param name="sdaPin"></param>
+        /// <param name="sclPin"></param>
+        public WittyPiService(ConnectorPin sdaPin, ConnectorPin sclPin)
+        {
+            this.SdaPin = sdaPin;
+            this.SclPin = sclPin;
+        }
 
         /// <summary>
         /// Gets or sets wake up date.
@@ -84,12 +117,12 @@ namespace Righthand.WittyPi
             conn.WriteByte(0x07);
             var bytes = conn.Read(4);
             var piDate = new WakeUpDateTime
-            {
-                Sec = GetByte(bytes[0]).Value,
-                Min = GetByte(bytes[1]),
-                Hour = GetByte(bytes[2]),
-                Day = GetByte(bytes[3])
-            };
+            (
+                GetByte(bytes[0]).Value,
+                GetByte(bytes[1]),
+                GetByte(bytes[2]),
+                GetByte(bytes[3])
+            );
             return piDate;
         }
         /// <summary>
@@ -102,12 +135,21 @@ namespace Righthand.WittyPi
             conn.WriteByte(0x0B);
             var bytes = conn.Read(3);
             var piDate = new SleepDateTime
-            {
-                Min = GetByte(bytes[0]).Value,
-                Hour = GetByte(bytes[1]).Value,
-                Day = GetByte(bytes[2]).Value
-            };
+            (
+                min: GetByte(bytes[0]).Value,
+                hour: GetByte(bytes[1]).Value,
+                day: GetByte(bytes[2]).Value
+            );
             return piDate;
+        }
+        /// <summary>
+        /// Transforms byte to BCD.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static byte GetBcd(int? value)
+        {
+            return GetBcd((byte?)value);
         }
         /// <summary>
         /// Transforms byte to BCD.
@@ -139,6 +181,63 @@ namespace Righthand.WittyPi
             else
             {
                 return (byte)(10 * (value >> 4) + (value & 0xf));
+            }
+        }
+
+        /// <summary>
+        /// RTC datetime from WittyPi.
+        /// </summary>
+        public DateTime RtcDateTime
+        {
+            get
+            {
+                return ReadRtcDateTime();
+            }
+            set
+            {
+                WriteRtcDateTime(value);
+            }
+        }
+
+        private void WriteRtcDateTime(DateTime value)
+        {
+            using (var i2c = new I2cDriver(SdaPin.ToProcessor(), SclPin.ToProcessor()))
+            {
+                var conn = i2c.Connect(SsdI2cAddress);
+                DateTime utc = value.ToUniversalTime();
+                conn.Write(0x00, GetBcd(utc.Second), GetBcd(utc.Minute), GetBcd(utc.Hour), 1, GetBcd(utc.Day),
+                    (byte)(((utc.Year / 100) << 7) | GetBcd(utc.Month)),  // month
+                    (byte)(GetBcd(utc.Year % 100))
+                );
+            }
+        }
+
+        public DateTime ReadRtcDateTime()
+        {
+            using (var i2c = new I2cDriver(SdaPin.ToProcessor(), SclPin.ToProcessor()))
+            {
+                var conn = i2c.Connect(SsdI2cAddress);
+                conn.WriteByte(0x00);
+                var buffer = conn.Read(7);
+                int hour;
+                if ((buffer[2] & HOUR_12) == HOUR_12)
+                {
+                    hour = ((buffer[2] >> 4) & 0x01) * 12 + ((buffer[2] >> 5) & 0x01) * 12;
+                }
+                else
+                {
+                    hour = GetByte(buffer[2]).Value;
+                }
+                int year = 100 * ((buffer[5] >> 7) & 0x01) + GetByte(buffer[6]).Value;
+                return new DateTime(
+                    year,
+                    GetByte((byte)(buffer[5] & 0x1f)).Value,
+                    GetByte(buffer[4]).Value,
+                    hour,
+                    GetByte(buffer[1]).Value,
+                    GetByte(buffer[0]).Value,
+                    DateTimeKind.Utc
+                );
             }
         }
     }

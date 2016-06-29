@@ -5,14 +5,14 @@
       <version>$version$</version>
       <authors>Righthand</authors>
       <owners>Righthand</owners>
-      <title>>WittyPiNet</title>
+      <title>WittyPiNet</title>
       <description>.net/Mono library to manage WittyPi board.</description>
       <summary>.net/Mono library to manage WittyPi board.</summary>
       <licenseUrl>https://github.com/MihaMarkic/WittyPiNet/blob/master/LICENSE</licenseUrl>
       <projectUrl>https://github.com/MihaMarkic/WittyPiNet</projectUrl>
       <releaseNotes>Initial version.</releaseNotes>
       
-      <requireLicenseAcceptance>True</requireLicenseAcceptance>
+      <requireLicenseAcceptance>false</requireLicenseAcceptance>
       <copyright>Copyright (c) Righthand 2016</copyright>
       <tags>Raspberry WittyPi Mono .net</tags>
 

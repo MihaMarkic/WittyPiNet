@@ -246,3 +246,4 @@ ModelManifest.xml
 .fake/
 # Cake
 Sources/tools
+Sources/deploy.txt

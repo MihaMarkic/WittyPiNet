@@ -9,20 +9,34 @@
         /// <summary>
         /// Second component of the date.
         /// </summary>
-        public byte Sec;
+        public byte Sec { get; }
         /// <summary>
         /// Minute component of the date.
         /// </summary>
-        public byte? Min;
+        public byte? Min { get; }
         /// <summary>
         /// Hour component of the date.
         /// </summary>
-        public byte? Hour;
+        public byte? Hour { get; }
         /// <summary>
         /// Day component of the date.
         /// </summary>
-        public byte? Day;
+        public byte? Day { get; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="sec"></param>
+        /// <param name="min"></param>
+        /// <param name="hour"></param>
+        /// <param name="day"></param>
+        public WakeUpDateTime(byte sec, byte? min, byte? hour, byte? day)
+        {
+            Sec = sec;
+            Min = min;
+            Hour = hour;
+            Day = day;
+        }
         /// <summary>
         /// Creates a daily schedule.
         /// </summary>
@@ -33,12 +47,12 @@
         public static WakeUpDateTime Daily(byte hour, byte min, byte sec)
         {
             return new WakeUpDateTime
-            {
-                Sec = sec,
-                Min = min,
-                Hour = hour,
-                Day = null
-            };
+            (
+                sec,
+                min,
+                hour,
+                null
+            );
         }
         /// <summary>
         /// Creates an hourly schedule.
@@ -49,12 +63,12 @@
         public static WakeUpDateTime Hourly(byte min, byte sec)
         {
             return new WakeUpDateTime
-            {
-                Sec = sec,
-                Min = min,
-                Hour = null,
-                Day = null
-            };
+            (
+                sec,
+                min,
+                 null,
+                null
+            );
         }
         /// <summary>
         /// Creates a minutely schedule.
@@ -64,12 +78,52 @@
         public static WakeUpDateTime Minutely(byte sec)
         {
             return new WakeUpDateTime
-            {
-                Sec = sec,
-                Min = null,
-                Hour = null,
-                Day = null
-            };
+            (
+                sec,
+                null,
+                null,
+                null
+            );
+        }
+
+        /// <summary>
+        /// Value compare.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            return obj is WakeUpDateTime && this == (WakeUpDateTime)obj;
+        }
+
+        /// <summary>
+        /// Custom GetHashCode
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return (Day?.GetHashCode() ?? 0) ^ (Hour?.GetHashCode() ?? 0) ^ (Min?.GetHashCode() ?? 0) ^ Sec.GetHashCode();
+        }
+
+        /// <summary>
+        /// ==
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator ==(WakeUpDateTime x, WakeUpDateTime y)
+        {
+            return x.Day == y.Day && x.Hour == y.Hour && x.Min == y.Min && x.Sec == y.Sec;
+        }
+        /// <summary>
+        /// !=
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator !=(WakeUpDateTime x, WakeUpDateTime y)
+        {
+            return !(x == y);
         }
     }
 }

@@ -1,19 +1,19 @@
 # WittyPiNet
 .net/Mono library for [Witty Pi](http://www.uugear.com/witty-pi-realtime-clock-power-management-for-raspberry-pi/) board.
-Currently it supports setting wake up time and sleep time.
+It uses a DS1337 circuit, so it should work with that circuit regardless of the (WittyPi) board.
+The library supports setting and getting wake up time, sleep time and RTC time.
 See also Witty Pi's [manual](http://www.uugear.com/doc/WittyPi_UserManual.pdf).
 
 [![NuGet](https://img.shields.io/nuget/v/WittyPiNet.svg)](https://www.nuget.org/packages/WittyPiNet)
 
-## Important
+## History
 
-Make sure that WittyPI's RTC clock is synchronized with Raspberry's system clock.
-Currently you can run WittyPI's syncTime.sh script or running wittyPi.sh script to manually synchronize it to accomplish it.
-Also note that WittyPI's RTC clock might be off system's time widely very soon.
+- v1.1.0 RTC time support
+- v1.0.0 Sleep and shutdown time support
 
 ## How to use
 ```
-WittyPiService wittyPi = new WittyPiService();
+IWittyPiService wittyPi = new WittyPiService();
 // wake up hourly at 15 minutes past hour.
 wittyPi.WakeUp = WakeUpDateTime.Hourly(15, 00);
 // sleep in 2 minutes
