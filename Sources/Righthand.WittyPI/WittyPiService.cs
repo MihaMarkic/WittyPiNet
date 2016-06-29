@@ -212,7 +212,7 @@ namespace Righthand.WittyPi
             }
         }
 
-        public DateTime ReadRtcDateTime()
+        private DateTime ReadRtcDateTime()
         {
             using (var i2c = new I2cDriver(SdaPin.ToProcessor(), SclPin.ToProcessor()))
             {
