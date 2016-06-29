@@ -8,6 +8,7 @@ See also Witty Pi's [manual](http://www.uugear.com/doc/WittyPi_UserManual.pdf).
 
 ## History
 
+- v1.1.1 Fixed assembly file name casing
 - v1.1.0 RTC time support
 - v1.0.0 Sleep and shutdown time support
 

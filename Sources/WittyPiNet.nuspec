@@ -23,7 +23,7 @@
    </metadata>
 
    <files>
-		<file src="Righthand.WittyPI\bin\Release\Righthand.WittyPI.dll" target="lib\net45\Righthand.WittyPI.dll" />
-        <file src="Righthand.WittyPI\bin\Release\Righthand.WittyPI.XML" target="lib\net45\Righthand.WittyPI.XML" />
+		<file src="Righthand.WittyPI\bin\Release\Righthand.WittyPi.dll" target="lib\net45\Righthand.WittyPi.dll" />
+        <file src="Righthand.WittyPI\bin\Release\Righthand.WittyPi.XML" target="lib\net45\Righthand.WittyPi.XML" />
    </files>
 </package>
