@@ -30,7 +30,7 @@
         /// <param name="min"></param>
         /// <param name="hour"></param>
         /// <param name="day"></param>
-        public WakeUpDateTime(byte sec, byte? min, byte? hour, byte? day)
+        public WakeUpDateTime(byte? day, byte? hour, byte? min, byte sec)
         {
             Sec = sec;
             Min = min;
@@ -48,10 +48,10 @@
         {
             return new WakeUpDateTime
             (
-                sec,
-                min,
+                null,
                 hour,
-                null
+                min,
+                sec
             );
         }
         /// <summary>
@@ -64,10 +64,10 @@
         {
             return new WakeUpDateTime
             (
-                sec,
+                null,
+                null,
                 min,
-                 null,
-                null
+                sec
             );
         }
         /// <summary>
@@ -79,10 +79,10 @@
         {
             return new WakeUpDateTime
             (
-                sec,
                 null,
                 null,
-                null
+                null,
+                sec
             );
         }
 

@@ -118,10 +118,10 @@ namespace Righthand.WittyPi
             var bytes = conn.Read(4);
             var piDate = new WakeUpDateTime
             (
-                GetByte(bytes[0]).Value,
-                GetByte(bytes[1]),
+                GetByte(bytes[3]),
                 GetByte(bytes[2]),
-                GetByte(bytes[3])
+                GetByte(bytes[1]),
+                GetByte(bytes[0]).Value
             );
             return piDate;
         }
@@ -172,7 +172,7 @@ namespace Righthand.WittyPi
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        static byte? GetByte(byte value)
+        public static byte? GetByte(byte value)
         {
             if (value == 128)
             {
