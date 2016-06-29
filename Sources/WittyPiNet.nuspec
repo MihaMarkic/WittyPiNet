@@ -23,7 +23,9 @@
    </metadata>
 
    <files>
-		<file src="Righthand.WittyPI\bin\Release\Righthand.WittyPi.dll" target="lib\net45\Righthand.WittyPi.dll" />
-        <file src="Righthand.WittyPI\bin\Release\Righthand.WittyPi.XML" target="lib\net45\Righthand.WittyPi.XML" />
+		  <file src="Righthand.WittyPI\bin\Release\Righthand.WittyPi.dll" target="lib\net45\Righthand.WittyPi.dll" />
+      <file src="Righthand.WittyPI\bin\Release\Righthand.WittyPi.xml" target="lib\net45\Righthand.WittyPi.xml" />
+     <file src="Righthand.WittyPI\bin\Release\Raspberry.IO.InterIntegratedCircuit.dll" target="lib\net45\Raspberry.IO.InterIntegratedCircuit.dll" />
+     <file src="Righthand.WittyPI\bin\Release\Raspberry.IO.InterIntegratedCircuit.xml" target="lib\net45\Raspberry.IO.InterIntegratedCircuit.xml" />
    </files>
 </package>

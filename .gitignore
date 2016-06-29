@@ -247,3 +247,4 @@ ModelManifest.xml
 # Cake
 Sources/tools
 Sources/deploy.txt
+*.cpp

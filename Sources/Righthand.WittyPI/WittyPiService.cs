@@ -206,8 +206,8 @@ namespace Righthand.WittyPi
                 var conn = i2c.Connect(SsdI2cAddress);
                 DateTime utc = value.ToUniversalTime();
                 conn.Write(0x00, GetBcd(utc.Second), GetBcd(utc.Minute), GetBcd(utc.Hour), 1, GetBcd(utc.Day),
-                    (byte)(((utc.Year / 100) << 7) | GetBcd(utc.Month)),  // month
-                    (byte)(GetBcd(utc.Year % 100))
+                    GetBcd(utc.Month),  // month
+                    GetBcd(utc.Year % 100)
                 );
             }
         }
@@ -228,9 +228,8 @@ namespace Righthand.WittyPi
                 {
                     hour = GetByte(buffer[2]).Value;
                 }
-                int year = 100 * ((buffer[5] >> 7) & 0x01) + GetByte(buffer[6]).Value;
                 return new DateTime(
-                    year,
+                    2000 + GetByte(buffer[6]).Value,
                     GetByte((byte)(buffer[5] & 0x1f)).Value,
                     GetByte(buffer[4]).Value,
                     hour,
