@@ -15,6 +15,9 @@ namespace Righthand.WittyPi
         /// Gets or sets sleep date.
         /// </summary>
         SleepDateTime Sleep { get; set; }
-        DateTime RtcDateTime { get; }
+        /// <summary>
+        /// RTC datetime on DS1337.
+        /// </summary>
+        DateTime RtcDateTime { get; set; }
     }
 }

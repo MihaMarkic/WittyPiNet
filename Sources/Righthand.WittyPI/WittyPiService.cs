@@ -185,7 +185,7 @@ namespace Righthand.WittyPi
         }
 
         /// <summary>
-        /// RTC datetime from WittyPi.
+        /// RTC datetime on DS1337.
         /// </summary>
         public DateTime RtcDateTime
         {

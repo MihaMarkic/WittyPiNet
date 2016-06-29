@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{367DFC09-B
 		build.cake = build.cake
 		..\LICENSE = ..\LICENSE
 		..\README.md = ..\README.md
+		WittyPiNet.nuspec = WittyPiNet.nuspec
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raspberry.IO.InterIntegratedCircuit", "Raspberry.IO.InterIntegratedCircuit\Raspberry.IO.InterIntegratedCircuit.csproj", "{63B8403E-BC56-43F9-A045-F61ECC3871F3}"
